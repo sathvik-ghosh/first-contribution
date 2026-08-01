@@ -1,0 +1,95 @@
+name: Auto Merge & Congratulate Contributor
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  validate-and-automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+
+      - name: Validate PR Changes
+        id: validate
+        run: |
+          # Fetch target branch base
+          git fetch origin ${{ github.event.pull_request.base.ref }}
+
+          # Get changed files between base branch and PR head
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }}...HEAD)
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Rule 1: PR must ONLY modify CONTRIBUTORS.md
+          for file in $CHANGED_FILES; do
+            if [ "$file" != "CONTRIBUTORS.md" ]; then
+              echo "Error: Only changes to CONTRIBUTORS.md are allowed for auto-merge. Found change in: $file"
+              exit 1
+            fi
+          done
+
+          # Rule 2: Ensure CONTRIBUTORS.md was actually edited
+          if ! echo "$CHANGED_FILES" | grep -q "^CONTRIBUTORS.md$"; then
+            echo "Error: CONTRIBUTORS.md was not modified."
+            exit 1
+          fi
+
+          echo "PR validation passed!"
+
+      - name: Automatically Merge PR
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            
+            // Merge the Pull Request
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              merge_method: 'squash'
+            });
+
+            // Post a celebratory comment on the PR
+            const commentBody = `🎉 **Congratulations @${pr.user.login}!** 🎉\n\nYour pull request has been automatically validated and merged! You have successfully completed your first open source contribution to **${context.repo.repo}**.\n\nKeep building and contributing! 🚀`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.number,
+              body: commentBody
+            });
+
+      - name: Send Congratulations Email
+        if: success() && secrets.MAIL_USERNAME != '' && secrets.MAIL_PASSWORD != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          subject: "🎉 Congratulations on your merged Pull Request!"
+          to: ${{ github.event.pull_request.user.email }}
+          from: "Open Source Bot <${{ secrets.MAIL_USERNAME }}>"
+          body: |
+            Hi @${{ github.event.pull_request.user.login }},
+
+            Congratulations! Your pull request #${{ github.event.pull_request.number }} has been automatically merged into ${{ github.repository }}.
+
+            Thank you for participating and making your open-source contribution!
+
+            Best regards,
+            First Contribution Team
