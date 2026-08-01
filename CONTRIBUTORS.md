@@ -7,13 +7,15 @@ Welcome to the contributors list! If you are completing your first open-source c
 - **Name:** Onizuka
   - **GitHub:** [@onizukaTP](https://github.com/onizukaTP)
   - **Message:** Welcome to open source! Enjoy your coding journey! 🚀
-
-
 ---
 
 - **Name:** SATHVIK GHOSH
   - **GitHub:** [@sathvik-ghosh]https://github.com/sathvik-ghosh
   - **Message:** Welcome to open source! Enjoy your coding journey! 🚀
  
-  ---
+---
+- **Name:** Aditya
+  - **GitHub:** [@BossAditya123](https://github.com/BossAditya123)
+  - **Message:** Always Learning
+---
 *(Add your contribution right above this line following the format above)*
