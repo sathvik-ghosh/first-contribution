@@ -1,67 +1,65 @@
 # First Contribution 🚀
 
-Welcome! This repository is designed to help beginners take their very first steps into the world of **Open Source Contributions**.
+Welcome! This repository is created to help beginners make their **very first Open Source Contribution** on GitHub in a friendly and beginner-safe environment.
 
 ---
 
-## 🎯 Goal
-The goal of this project is to provide a safe, simple environment where anyone can learn the GitHub pull request workflow by adding their name, bio, or a quick contribution to this repository.
+## 🎯 What is this repository for?
+Making your first pull request can feel intimidating. This repository gives you a simple sandbox to practice the standard Git & GitHub workflow without worrying about breaking anything!
 
 ---
 
-## 🛠️ Step-by-Step Guide to Make Your First Contribution
+## 🛠️ Step-by-Step Contribution Guide
+
+Follow these simple steps to make your contribution:
 
 ### 1. Fork this Repository
-Click the **Fork** button at the top right corner of this repository page to create your own copy of this codebase under your GitHub account.
+Click the **Fork** button at the top right of this page to create a copy of this repository under your GitHub account.
 
-### 2. Clone your Fork
-Open your terminal/command prompt and clone your fork to your local machine:
+### 2. Clone Your Forked Repository
+Open your terminal and clone your fork to your computer:
 ```bash
 git clone https://github.com/<your-username>/first-contribution.git
 cd first-contribution
 ```
+*(Replace `<your-username>` with your actual GitHub username)*
 
 ### 3. Create a New Branch
-Create a new branch for your changes:
+Create and switch to a new branch for your changes:
 ```bash
 git checkout -b add-your-name
 ```
-*(Replace `add-your-name` with something descriptive like `add-alex-dev`)*
+*(Use a descriptive branch name like `add-alex-dev`)*
 
-### 4. Make Your Changes
-Add your details to the **Contributors List** section below in `README.md`:
+### 4. Add Yourself to [CONTRIBUTORS.md](CONTRIBUTORS.md)
+Open `CONTRIBUTORS.md` in your favorite code editor and add your details at the end of the list:
 
 ```markdown
 - **Name:** Your Name
-- **GitHub:** [@yourusername](https://github.com/yourusername)
-- **Message:** A short message or line about your tech goals!
+  - **GitHub:** [@yourusername](https://github.com/yourusername)
+  - **Message:** A short line about your tech goals or favorite stack!
 ```
 
 ### 5. Commit and Push Your Changes
-Stage, commit, and push your branch to GitHub:
+Stage your modified file, commit your changes, and push your branch to GitHub:
 ```bash
-git add README.md
-git commit -m "Add <Your Name> to contributors list"
+git add CONTRIBUTORS.md
+git commit -m "docs: add <Your Name> to contributors"
 git push origin add-your-name
 ```
 
-### 6. Create a Pull Request (PR)
-1. Go to your fork on GitHub.
-2. Click on the **Compare & pull request** button.
-3. Add a clear title and description for your PR.
+### 6. Submit a Pull Request (PR)
+1. Go to your fork repository page on GitHub.
+2. You will see a banner with a **Compare & pull request** button. Click it!
+3. Add a title (e.g., `Add Alex to contributors`) and a brief description.
 4. Click **Create pull request**! 🎉
 
 ---
 
-## 👥 Contributors List
-
-Add your name below following the guide above!
-
-- **Name:** Onizuka
-- **GitHub:** [@onizukaTP](https://github.com/onizukaTP)
-- **Message:** Welcome to open source! Enjoy your coding journey! 🚀
+## 🌟 See Who Has Contributed
+Check out our growing list of contributors in [CONTRIBUTORS.md](CONTRIBUTORS.md)!
 
 ---
 
 ## 📜 License
-This project is open-source under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
