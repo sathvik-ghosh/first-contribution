@@ -12,7 +12,7 @@ Welcome to the contributors list! If you are completing your first open-source c
 ---
 
 - **Name:** SATHVIK GHOSH
-  - **GitHub:** [@onizukaTP]https://github.com/sathvik-ghosh
+  - **GitHub:** [@sathvik-ghosh]https://github.com/sathvik-ghosh
   - **Message:** Welcome to open source! Enjoy your coding journey! 🚀
  
   ---
